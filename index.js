@@ -7,13 +7,17 @@ var TangleText = React.createClass({
     onChange: React.PropTypes.func.isRequired,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
-    ratio: React.PropTypes.number
+    ratio: React.PropTypes.number,
+    className: React.PropTypes.string,
+    format: React.PropTypes.func,
   },
   getDefaultProps: function() {
     return {
       min: -Infinity,
       max: Infinity,
-      ratio: 1
+      ratio: 1,
+      className: 'react-tangle-input',
+      format: function(x) { return x; }
     };
   },
   getInitialState: function() {
@@ -29,7 +33,6 @@ var TangleText = React.createClass({
   },
   onBlur: function(e) {
     var parsed = parseFloat(this.state.value);
-    console.log(parsed);
     if (isNaN(parsed)) {
       this.setState({ value: this.props.value });
     } else {
@@ -41,7 +44,7 @@ var TangleText = React.createClass({
     var change = this.startX - e.screenX;
     this.dragged = true;
     this.setState({
-      value: this.startValue - (change * this.props.ratio)
+      value: this.bounds(this.startValue - (change * this.props.ratio))
     });
   },
   onMouseDown: function(e) {
@@ -56,11 +59,11 @@ var TangleText = React.createClass({
 
     document.body.addEventListener('mousemove', this.onMouseMove);
     document.body.addEventListener('mouseup', this.onMouseUp);
-    document.body.addEventListener('mouseout', this.onMouseUp);
   },
   onMouseUp: function(e) {
     e.preventDefault();
     document.body.removeEventListener('mousemove', this.onMouseMove);
+    document.body.removeEventListener('mouseup', this.onMouseUp);
     this.onBlur();
   },
   onClick: function(e) {
@@ -72,14 +75,14 @@ var TangleText = React.createClass({
     return (
       <div>
         <input
-          className='react-tangle-input'
+          className={this.props.className}
           type='text'
           onChange={this.onChange}
           onMouseDown={this.onMouseDown}
           onMouseUp={this.onMouseUp}
           onClick={this.onClick}
           onBlur={this.onBlur}
-          value={this.state.value} />
+          value={this.props.format(this.state.value)} />
       </div>
     );
     /* jshint ignore:end */

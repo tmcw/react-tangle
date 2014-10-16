@@ -15,9 +15,11 @@ A [tangle.js](http://worrydream.com/Tangle/)-style numeric input for React.js.
 **optional**
 
 ```
-  min={numeric value}
-  max={numeric value}
-  ratio={numeric value}
+className={string, default 'react-tangle-input'}
+min={numeric, default -Infinity}
+max={numeric, default Infinity}
+ratio={numeric, default 1}
+format={function, function(x) { return x; }}
 ```
 
 Ratio is a ratio of pixels moved by mouse versus change in the number.
