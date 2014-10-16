@@ -1,6 +1,6 @@
 {
   "name": "react-tangle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tangle.js style input elements for react",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,9 @@
     "drag"
   ],
   "browserify": {
-    "transform": ["reactify"]
+    "transform": [
+      "reactify"
+    ]
   },
   "author": "Tom MacWright",
   "license": "ISC",
