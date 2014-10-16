@@ -1,0 +1,42 @@
+{
+  "name": "react-tangle",
+  "version": "1.0.0",
+  "description": "tangle.js style input elements for react",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "example": "watchify example/site.js -o example/bundle.js & st -nc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mapbox/react-tangle.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "tangle",
+    "ui",
+    "element",
+    "interactive",
+    "text",
+    "drag"
+  ],
+  "browserify": {
+    "transform": ["reactify"]
+  },
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mapbox/react-tangle/issues"
+  },
+  "homepage": "https://github.com/mapbox/react-tangle",
+  "devDependencies": {
+    "browserify": "^6.1.0",
+    "reactify": "^0.14.0",
+    "st": "^0.5.2",
+    "watchify": "^2.0.0"
+  },
+  "dependencies": {
+    "react": "^0.11.2"
+  }
+}
