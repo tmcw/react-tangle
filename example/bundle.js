@@ -14,9 +14,23 @@ var Example = React.createClass({displayName: 'Example',
     /* jshint ignore:start */
     return (
       React.DOM.div(null, 
-        TangleText({
-          value: this.state.value, 
-          onChange: this.onChange})
+        React.DOM.div({className: "clearfix pad1 keyline-bottom"}, 
+          React.DOM.div({className: "col4"}, 
+            TangleText({value: this.state.value, onChange: this.onChange})
+          ), 
+          React.DOM.div({className: "col8"}, 
+            "Default settings, no minimum, maximum, or step."
+          )
+        ), 
+        React.DOM.div({className: "clearfix pad1"}, 
+          React.DOM.div({className: "col4"}, 
+            TangleText({value: this.state.value, onChange: this.onChange, 
+              min: 0, max: 1, ratio: 0.02})
+          ), 
+          React.DOM.div({className: "col8"}, 
+            "Choose numbers between 0 and 1 with a 0.02 step"
+          )
+        )
       )
     );
     /* jshint ignore:end */
@@ -35,13 +49,17 @@ var TangleText = React.createClass({displayName: 'TangleText',
     onChange: React.PropTypes.func.isRequired,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
-    ratio: React.PropTypes.number
+    ratio: React.PropTypes.number,
+    className: React.PropTypes.string,
+    format: React.PropTypes.func,
   },
   getDefaultProps: function() {
     return {
       min: -Infinity,
       max: Infinity,
-      ratio: 1
+      ratio: 1,
+      className: 'react-tangle-input',
+      format: function(x) { return x; }
     };
   },
   getInitialState: function() {
@@ -57,7 +75,6 @@ var TangleText = React.createClass({displayName: 'TangleText',
   },
   onBlur: function(e) {
     var parsed = parseFloat(this.state.value);
-    console.log(parsed);
     if (isNaN(parsed)) {
       this.setState({ value: this.props.value });
     } else {
@@ -69,7 +86,7 @@ var TangleText = React.createClass({displayName: 'TangleText',
     var change = this.startX - e.screenX;
     this.dragged = true;
     this.setState({
-      value: this.startValue - (change * this.props.ratio)
+      value: this.bounds(this.startValue - (change * this.props.ratio))
     });
   },
   onMouseDown: function(e) {
@@ -82,13 +99,13 @@ var TangleText = React.createClass({displayName: 'TangleText',
     this.startX = e.screenX;
     this.startValue = this.state.value;
 
-    document.body.addEventListener('mousemove', this.onMouseMove);
-    document.body.addEventListener('mouseup', this.onMouseUp);
-    document.body.addEventListener('mouseout', this.onMouseUp);
+    window.addEventListener('mousemove', this.onMouseMove);
+    window.addEventListener('mouseup', this.onMouseUp);
   },
   onMouseUp: function(e) {
     e.preventDefault();
-    document.body.removeEventListener('mousemove', this.onMouseMove);
+    window.removeEventListener('mousemove', this.onMouseMove);
+    window.removeEventListener('mouseup', this.onMouseUp);
     this.onBlur();
   },
   onClick: function(e) {
@@ -100,14 +117,14 @@ var TangleText = React.createClass({displayName: 'TangleText',
     return (
       React.DOM.div(null, 
         React.DOM.input({
-          className: "react-tangle-input", 
+          className: this.props.className, 
           type: "text", 
           onChange: this.onChange, 
           onMouseDown: this.onMouseDown, 
           onMouseUp: this.onMouseUp, 
           onClick: this.onClick, 
           onBlur: this.onBlur, 
-          value: this.state.value})
+          value: this.props.format(this.state.value)})
       )
     );
     /* jshint ignore:end */

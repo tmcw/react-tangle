@@ -57,13 +57,13 @@ var TangleText = React.createClass({
     this.startX = e.screenX;
     this.startValue = this.state.value;
 
-    document.body.addEventListener('mousemove', this.onMouseMove);
-    document.body.addEventListener('mouseup', this.onMouseUp);
+    window.addEventListener('mousemove', this.onMouseMove);
+    window.addEventListener('mouseup', this.onMouseUp);
   },
   onMouseUp: function(e) {
     e.preventDefault();
-    document.body.removeEventListener('mousemove', this.onMouseMove);
-    document.body.removeEventListener('mouseup', this.onMouseUp);
+    window.removeEventListener('mousemove', this.onMouseMove);
+    window.removeEventListener('mouseup', this.onMouseUp);
     this.onBlur();
   },
   onClick: function(e) {
