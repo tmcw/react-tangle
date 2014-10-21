@@ -9,6 +9,7 @@ var TangleText = React.createClass({
     max: React.PropTypes.number,
     ratio: React.PropTypes.number,
     className: React.PropTypes.string,
+    onInput: React.PropTypes.func,
     format: React.PropTypes.func,
   },
   getDefaultProps: function() {
@@ -17,7 +18,8 @@ var TangleText = React.createClass({
       max: Infinity,
       ratio: 1,
       className: 'react-tangle-input',
-      format: function(x) { return x; }
+      format: function(x) { return x; },
+      onInput: function() { }
     };
   },
   componentWillReceiveProps: function(nextProps) {
@@ -46,9 +48,9 @@ var TangleText = React.createClass({
   onMouseMove: function(e) {
     var change = this.startX - e.screenX;
     this.dragged = true;
-    this.setState({
-      value: this.bounds(this.startValue - (change * this.props.ratio))
-    });
+    var value = this.bounds(this.startValue - (change * this.props.ratio));
+    this.setState({ value: value });
+    this.props.onInput(value);
   },
   onMouseDown: function(e) {
     // short circuit if currently editing number
