@@ -20,6 +20,9 @@ var TangleText = React.createClass({
       format: function(x) { return x; }
     };
   },
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({ value: nextProps.value });
+  },
   getInitialState: function() {
     return { value: this.props.value };
   },
