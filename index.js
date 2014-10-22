@@ -81,6 +81,7 @@ var TangleText = React.createClass({
       <div>
         <input
           className={this.props.className}
+          disabled={this.props.disabled}
           type='text'
           onChange={this.onChange}
           onMouseDown={this.onMouseDown}
