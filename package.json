@@ -1,6 +1,6 @@
 {
   "name": "react-tangle",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "tangle.js style input elements for react",
   "main": "index.js",
   "scripts": {
