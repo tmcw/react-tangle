@@ -19,9 +19,9 @@ onInput={function}
 className={string, default 'react-tangle-input'}
 min={numeric, default -Infinity}
 max={numeric, default Infinity}
-ratio={numeric, default 1}
+step={numeric, default 1}
 format={function, function(x) { return x; }}
 disabled={boolean, default false}
 ```
 
-Ratio is a ratio of pixels moved by mouse versus change in the number.
+Step is a ratio of pixels moved by mouse versus change in the number.
