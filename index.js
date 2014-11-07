@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 
 var TangleText = React.createClass({
@@ -7,7 +6,7 @@ var TangleText = React.createClass({
     onChange: React.PropTypes.func.isRequired,
     min: React.PropTypes.number,
     max: React.PropTypes.number,
-    ratio: React.PropTypes.number,
+    step: React.PropTypes.number,
     className: React.PropTypes.string,
     onInput: React.PropTypes.func,
     format: React.PropTypes.func,
@@ -16,7 +15,7 @@ var TangleText = React.createClass({
     return {
       min: -Infinity,
       max: Infinity,
-      ratio: 1,
+      step: 1,
       className: 'react-tangle-input',
       format: function(x) { return x; },
       onInput: function() { }
@@ -48,7 +47,7 @@ var TangleText = React.createClass({
   onMouseMove: function(e) {
     var change = this.startX - e.screenX;
     this.dragged = true;
-    var value = this.bounds(this.startValue - (change * this.props.ratio));
+    var value = this.bounds(this.startValue - (change * this.props.step));
     this.setState({ value: value });
     this.props.onInput(value);
   },
@@ -71,9 +70,23 @@ var TangleText = React.createClass({
     window.removeEventListener('mouseup', this.onMouseUp);
     this.onBlur();
   },
-  onClick: function(e) {
-    // it not editing number, start to.
-    if (!this.dragged && e.target !== document.activeElement) e.target.focus();
+  onDoubleClick: function(e) {
+    e.target.focus();
+  },
+  onKeyDown: function(e) {
+    if (e.which == 38) {
+      // UP
+      e.preventDefault();
+      this.setState({ value: this.state.value + this.props.step });
+    } else if (e.which == 40) {
+      // DOWN
+      e.preventDefault();
+      this.setState({ value: this.state.value + this.props.step });
+    } else if (e.which == 13) {
+      // ENTER
+      this.onBlur(e);
+      e.target.blur();
+    }
   },
   render: function() {
     /* jshint ignore:start */
@@ -85,8 +98,9 @@ var TangleText = React.createClass({
           type='text'
           onChange={this.onChange}
           onMouseDown={this.onMouseDown}
+          onKeyDown={this.onKeyDown}
           onMouseUp={this.onMouseUp}
-          onClick={this.onClick}
+          onDoubleClick={this.onDoubleClick}
           onBlur={this.onBlur}
           value={this.props.format(this.state.value)} />
       </div>

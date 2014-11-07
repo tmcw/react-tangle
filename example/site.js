@@ -24,7 +24,7 @@ var Example = React.createClass({
         <div className='clearfix pad1'>
           <div className='col4'>
             <TangleText value={this.state.value} onChange={this.onChange}
-              min={0} max={1} ratio={0.02} />
+              min={0} max={1} step={0.02} />
           </div>
           <div className='col8'>
             Choose numbers between 0 and 1 with a 0.02 step
