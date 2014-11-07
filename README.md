@@ -25,3 +25,5 @@ disabled={boolean, default false}
 ```
 
 Step is a ratio of pixels moved by mouse versus change in the number.
+
+Up/Down arrows increment the value by the step value.

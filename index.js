@@ -73,6 +73,21 @@ var TangleText = React.createClass({
   onDoubleClick: function(e) {
     e.target.focus();
   },
+  onKeyDown: function(e) {
+    if (e.which == 38) {
+      // UP
+      e.preventDefault();
+      this.setState({ value: this.state.value + this.props.step });
+    } else if (e.which == 40) {
+      // DOWN
+      e.preventDefault();
+      this.setState({ value: this.state.value + this.props.step });
+    } else if (e.which == 13) {
+      // ENTER
+      this.onBlur(e);
+      e.target.blur();
+    }
+  },
   render: function() {
     /* jshint ignore:start */
     return (
@@ -83,6 +98,7 @@ var TangleText = React.createClass({
           type='text'
           onChange={this.onChange}
           onMouseDown={this.onMouseDown}
+          onKeyDown={this.onKeyDown}
           onMouseUp={this.onMouseUp}
           onDoubleClick={this.onDoubleClick}
           onBlur={this.onBlur}
