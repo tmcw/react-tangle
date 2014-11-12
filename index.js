@@ -21,6 +21,9 @@ var TangleText = React.createClass({
       onInput: function() { }
     };
   },
+  componentWillMount: function() {
+    this.__isMouseDown = false;
+  },
   componentWillReceiveProps: function(nextProps) {
     this.setState({ value: nextProps.value });
   },
@@ -53,7 +56,8 @@ var TangleText = React.createClass({
   },
   onMouseDown: function(e) {
     // short circuit if currently editing number
-    if (e.target === document.activeElement) return;
+    if (e.target === document.activeElement || e.button !== 0) return;
+    this.__isMouseDown = true;
 
     e.preventDefault();
 
@@ -65,10 +69,13 @@ var TangleText = React.createClass({
     window.addEventListener('mouseup', this.onMouseUp);
   },
   onMouseUp: function(e) {
-    e.preventDefault();
-    window.removeEventListener('mousemove', this.onMouseMove);
-    window.removeEventListener('mouseup', this.onMouseUp);
-    this.onBlur();
+    if (this.__isMouseDown) {
+      e.preventDefault();
+      window.removeEventListener('mousemove', this.onMouseMove);
+      window.removeEventListener('mouseup', this.onMouseUp);
+      if (this.dragged) this.onBlur();
+      this.__isMouseDown = false;
+    }
   },
   onDoubleClick: function(e) {
     e.target.focus();

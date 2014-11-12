@@ -34,7 +34,7 @@
   "homepage": "https://github.com/mapbox/react-tangle",
   "devDependencies": {
     "browserify": "^6.1.0",
-    "reactify": "^0.14.0",
+    "reactify": "^0.16.0",
     "st": "^0.5.2",
     "watchify": "^2.0.0"
   },
