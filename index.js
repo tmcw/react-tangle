@@ -88,7 +88,7 @@ var TangleText = React.createClass({
     } else if (e.which == 40) {
       // DOWN
       e.preventDefault();
-      this.setState({ value: this.state.value + this.props.step });
+      this.setState({ value: this.state.value - this.props.step });
     } else if (e.which == 13) {
       // ENTER
       this.onBlur(e);
