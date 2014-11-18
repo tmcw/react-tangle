@@ -7,7 +7,11 @@ var Example = React.createClass({
     return { value: 0, valueTwo: 0 };
   },
   onChange: function(value) {
+    console.log('onChange one', value);
     this.setState({ value: value });
+  },
+  onInput: function(value) {
+    console.log('onInput one', value);
   },
   onChangeTwo: function(value) {
     this.setState({ valueTwo: value });
@@ -18,7 +22,7 @@ var Example = React.createClass({
       <div>
         <div className='clearfix pad1 keyline-bottom'>
           <div className='col4'>
-            <TangleText value={this.state.valueTwo} onChange={this.onChangeTwo} />
+            <TangleText value={this.state.valueTwo} onInput={this.onInput} onChange={this.onChangeTwo} />
             <TangleText value={this.state.value} onChange={this.onChange}
               min={0} max={1} step={0.02} />
           </div>

@@ -81,14 +81,19 @@ var TangleText = React.createClass({
     e.target.focus();
   },
   onKeyDown: function(e) {
+    var value;
     if (e.which == 38) {
       // UP
       e.preventDefault();
-      this.setState({ value: this.state.value + this.props.step });
+      value = this.state.value + this.props.step;
+      this.setState({ value: value });
+      this.props.onInput(value);
     } else if (e.which == 40) {
       // DOWN
       e.preventDefault();
-      this.setState({ value: this.state.value - this.props.step });
+      value = this.state.value - this.props.step;
+      this.setState({ value: value });
+      this.props.onInput(value);
     } else if (e.which == 13) {
       // ENTER
       this.onBlur(e);
