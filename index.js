@@ -51,10 +51,10 @@ var TangleText = React.createClass({
   },
   onMouseMove: function(e) {
     var change;
-    if (!this.props.pixelDistance) {
-      change = this.startX - e.screenX;
-    } else {
+    if (this.props.pixelDistance > 0) {
       change = Math.floor((this.startX - e.screenX) / this.props.pixelDistance);
+    } else {
+      change = this.startX - e.screenX;
     }
     this.dragged = true;
     var value = this.bounds(this.startValue - (change * this.props.step));
