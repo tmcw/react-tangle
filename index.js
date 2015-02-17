@@ -7,15 +7,17 @@ var TangleText = React.createClass({
     min: React.PropTypes.number,
     max: React.PropTypes.number,
     step: React.PropTypes.number,
+    pixelDistance: React.PropTypes.number,
     className: React.PropTypes.string,
     onInput: React.PropTypes.func,
-    format: React.PropTypes.func,
+    format: React.PropTypes.func
   },
   getDefaultProps: function() {
     return {
       min: -Infinity,
       max: Infinity,
       step: 1,
+      pixelDistance: null,
       className: 'react-tangle-input',
       format: function(x) { return x; },
       onInput: function() { }
@@ -48,7 +50,12 @@ var TangleText = React.createClass({
     }
   },
   onMouseMove: function(e) {
-    var change = this.startX - e.screenX;
+    var change;
+    if (!this.props.pixelDistance) {
+      change = this.startX - e.screenX;
+    } else {
+      change = Math.floor((this.startX - e.screenX) / this.props.pixelDistance);
+    }
     this.dragged = true;
     var value = this.bounds(this.startValue - (change * this.props.step));
     this.setState({ value: value });
