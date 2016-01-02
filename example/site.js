@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var TangleText = require('../'),
-  React = require('react');
+  React = require('react'),
+  ReactDOM = require('react-dom');
 
 var Example = React.createClass({
   getInitialState: function() {
@@ -36,4 +37,4 @@ var Example = React.createClass({
   }
 });
 
-React.renderComponent(<Example />, document.getElementById('app'));
+ReactDOM.render(<Example />, document.getElementById('app'));
