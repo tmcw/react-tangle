@@ -143,7 +143,8 @@ TangleText.defaultProps = {
     MozAppearance: 'none',
     appearance: 'none',
     textAlign: 'left',
-    cursor: 'col-resize'
+    cursor: 'col-resize',
+    borderBottom: '1px dashed'
   },
   format: function (x) { return x },
   onInput: function () { }
