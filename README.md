@@ -2,6 +2,21 @@
 
 A [tangle.js](http://worrydream.com/Tangle/)-style numeric input for React.js.
 
+
+# how to use
+
+Install it from this GitHub repository directly:
+
+```
+npm install --save fiatjaf/react-tangle
+```
+
+then use it:
+
+```js
+const TangleText = require('react-tangle')
+```
+
 # api
 
 **required**
