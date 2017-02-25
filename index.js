@@ -100,7 +100,9 @@ var TangleText = React.createClass({
     return (
       React.createElement('div', {}, [
         React.createElement('input', {
+          key: '1',
           className: this.props.className,
+          style: this.props.style,
           disabled: this.props.disabled,
           type: 'text',
           onChange: this.onChange,
@@ -124,6 +126,7 @@ TangleText.propTypes = {
   step: React.PropTypes.number,
   pixelDistance: React.PropTypes.number,
   className: React.PropTypes.string,
+  style: React.PropTypes.object,
   onInput: React.PropTypes.func,
   format: React.PropTypes.func
 }
@@ -134,6 +137,14 @@ TangleText.defaultProps = {
   step: 1,
   pixelDistance: null,
   className: 'react-tangle-input',
+  style: {
+    border: 0,
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    appearance: 'none',
+    textAlign: 'left',
+    cursor: 'col-resize'
+  },
   format: function (x) { return x },
   onInput: function () { }
 }
