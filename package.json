@@ -21,11 +21,6 @@
     "text",
     "drag"
   ],
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
-  },
   "author": "Tom MacWright",
   "license": "ISC",
   "bugs": {

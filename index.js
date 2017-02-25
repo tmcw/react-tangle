@@ -98,23 +98,23 @@ var TangleText = React.createClass({
 
   render: function () {
     return (
-      <div>
-        <input
-          className={this.props.className}
-          disabled={this.props.disabled}
-          type='text'
-          onChange={this.onChange}
-          onMouseDown={this.onMouseDown}
-          onKeyDown={this.onKeyDown}
-          onMouseUp={this.onMouseUp}
-          onDoubleClick={this.onDoubleClick}
-          onBlur={this.onBlur}
-          value={this.props.format(this.state.value)} />
-      </div>
-    );
-    /* jshint ignore:end */
+      React.createElement('div', {}, [
+        React.createElement('input', {
+          className: this.props.className,
+          disabled: this.props.disabled,
+          type: 'text',
+          onChange: this.onChange,
+          onMouseDown: this.onMouseDown,
+          onKeyDown: this.onKeyDown,
+          onMouseUp: this.onMouseUp,
+          onDoubleClick: this.onDoubleClick,
+          onBlur: this.onBlur,
+          value: this.props.format(this.state.value)
+        })
+      ])
+    )
   }
-});
+})
 
 TangleText.propTypes = {
   value: React.PropTypes.number.isRequired,
