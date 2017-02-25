@@ -12,16 +12,14 @@ var TangleText = React.createClass({
     onInput: React.PropTypes.func,
     format: React.PropTypes.func
   },
-  getDefaultProps: function() {
-    return {
-      min: -Infinity,
-      max: Infinity,
-      step: 1,
-      pixelDistance: null,
-      className: 'react-tangle-input',
-      format: function(x) { return x; },
-      onInput: function() { }
-    };
+  defaultProps: {
+    min: -Infinity,
+    max: Infinity,
+    step: 1,
+    pixelDistance: null,
+    className: 'react-tangle-input',
+    format: function (x) { return x },
+    onInput: function () { }
   },
   componentWillMount: function () {
     this.__isMouseDown = false
