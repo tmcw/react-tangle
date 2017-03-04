@@ -36,7 +36,7 @@ style={object}
 min={numeric, default -Infinity}
 max={numeric, default Infinity}
 step={numeric, default 1}
-pixelDistance={numeric, default null}
+pixelDistance={numeric, default 1}
 format={function, function(x) { return x; }}
 disabled={boolean, default false}
 ```

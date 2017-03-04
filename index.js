@@ -34,12 +34,7 @@ var TangleText = React.createClass({
   },
 
   onMouseMove: function (e) {
-    var change
-    if (this.props.pixelDistance > 0) {
-      change = Math.floor((this.startX - e.screenX) / this.props.pixelDistance)
-    } else {
-      change = this.startX - e.screenX
-    }
+    var change = Math.floor((this.startX - e.screenX) / this.props.pixelDistance)
     this.dragged = true
     var value = this.bounds(this.startValue - (change * this.props.step))
     this.setState({ value: value })
@@ -135,7 +130,7 @@ TangleText.defaultProps = {
   min: -Infinity,
   max: Infinity,
   step: 1,
-  pixelDistance: null,
+  pixelDistance: 1,
   className: 'react-tangle-input',
   style: {
     border: 0,
