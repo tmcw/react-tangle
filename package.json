@@ -33,13 +33,13 @@
   },
   "homepage": "https://github.com/mapbox/react-tangle",
   "devDependencies": {
-    "browserify": "^6.1.0",
-    "reactify": "^0.16.0",
-    "st": "^0.5.2",
-    "watchify": "^2.0.0"
+    "browserify": "^14.3.0",
+    "reactify": "^1.1.1",
+    "st": "^1.2.0",
+    "watchify": "^3.9.0"
   },
   "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
   }
 }
