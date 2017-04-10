@@ -1,5 +1,7 @@
 # react-tangle
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/react-tangle.svg)](https://greenkeeper.io/)
+
 A [tangle.js](http://worrydream.com/Tangle/)-style numeric input for React.js.
 
 # api
